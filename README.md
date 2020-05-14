@@ -1,30 +1,26 @@
-Docker and docker-compose class
+Git, docker and docker-compose task
 ===============================
 
-Note about working user variables: you should export two variables at host machine — `DUID` (docker user id), variable with your current user ID and `DGID` (docker group id), variable with your current group.
+### Task
+1. Стянуть к себе репозиторий https://git.crtweb.ru/academy-of-quality/docker-lesson 
+2. Изменить удаленный репозиторий, для проекта который стянули, на свой Гитхаб 
+3. Ответвившись от мастера, создать ветку dev 
+4. В ветке dev добавить переменную окружения для образа приложения (ФИО студента). ПОЯСНЕНИЕ: — Проект настроен так, чтобы выводить все переменные среды контейнера приложения. В верхней части страницы выводятся переменные с префиксом APP_. Ваша задача — добавить переменную среды для контейнера приложения … Если вы всё сделаете правильно, эта переменная автоматически выведется среди прочих. 
+5. Когда изменения сделаны - выполнить merge ветки conflicted в ветку dev - она меняет те же файлы что нужно было поменять для предыдущего шага 
+6. Решить конфликт. Сервер должен возвращать как ваши изменения, так и изменения из ветки conflicted. 
+7. Пересобрать образ, проверить что сервер возвращает правильный ответ 
+8. Сбилдить образ и загрузить его на dockerhub (Ссылку скиньте нам) 
+9. Слить ветку dev в ветку master и выгрузить локальный репозиторий в свой Github (Ссылку тоже нам) Если с каким-то шагом возникли трудности, вы можете упомянуть их в описании репозитория на Github, частично сделаное задание принимается. 
 
-These variables are uses for launch php-process in a container.
+### Steps
+1. Склонировать репозиторий с gtilab
+2. Создать новый удалённый репозиторий
+3. Выполнить команду git remote set-url origin new_repo_url и запушить репозиторий с gitlab'a в только что созданный репозиторий
+4. Создать ветку dev и добавить в ней переменную в файл docker-compose.yml
+5. Слить ветку conflicted в dev, разрешив конфликт
+6. Пересобрать образ и запушить его на dockerhub
+7. Слить ветку dev в master и запушить её
 
-For example:    
-```shell script
-export DUID=$(id -u) && export DGID=$(id -g)
-```
-
-## Run project locally
-
-1. Build project: 
-    ```shell script
-    docker-compose build
-    ```
-1. Launch project:
-    ```shell script
-    docker-compose up -d
-    ```
-1. Install packages:
-    ```shell script
-    docker-compose exec app composer install
-    ```
-1. Run tests:
-    ```shell script
-    docker-compose exec app vendor/bin/phpunit
-    ```
+Ссылки на docker hub:
+1. https://hub.docker.com/repository/docker/gena20/docker-lesson_app
+2. https://hub.docker.com/repository/docker/gena20/docker-lesson_web
